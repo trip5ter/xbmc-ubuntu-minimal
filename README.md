@@ -1,7 +1,7 @@
 xbmc-ubuntu-minimal
 ===================
 
-* Install Ubuntu minimal 12.10 on your HTPC machine...
+* Install Ubuntu minimal 12.10 / 13.04 on your HTPC machine...
 
 x64: http://archive.ubuntu.com/ubuntu/dists/quantal/main/installer-amd64/current/images/netboot/mini.iso
 
@@ -11,7 +11,7 @@ i386: http://archive.ubuntu.com/ubuntu/dists/quantal/main/installer-i386/current
 
 ```
 cd ~ 
-wget https://github.com/trip5ter/xbmc-ubuntu-minimal/raw/master/12.10/prepare_install_2_6_1.sh
+wget https://github.com/trip5ter/xbmc-ubuntu-minimal/raw/master/12.10/prepare_install_3_0_0.sh
 bash ./prepare_install_2_6_1.sh
 ```
 
