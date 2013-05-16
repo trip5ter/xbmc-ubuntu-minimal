@@ -543,6 +543,18 @@ function installAutomaticDistUpgrade()
     fi
 }
 
+function installHamaMCERemote()
+{
+showInfo "Installing Hama MCE Remote Event Client..."
+createDirectory "$TEMP_DIRECTORY" 1 0
+createDirectory "$XBMC_USERDATA_DIR/keymaps" 1 0
+sudo apt-get install -y libusb-1.0.0-dev > /dev/null
+git clone https://github.com/xhaggi/xbmc-eventclient-hama-mce.git $TEMP_DIRECTORY
+$TEMP_DIRECTORY/make 
+sudo $TEMP_DIRECTORY/make install
+sudo update-rc.d xbmc_hama_mce defaults
+cp $TEMP_DIRECTORY/remote.xml $XBMC_USERDATA_DIR/keymaps/
+}
 function removeAutorunFiles()
 {
     if [ -e "$XBMC_INIT_FILE" ]; then
@@ -865,7 +877,8 @@ function selectAdditionalPackages()
     options=(1 "Lirc (IR remote support)" off
             2 "Hts tvheadend (live TV backend)" off
             3 "Oscam (live HDTV decryption tool)" off
-            4 "Automatic upgrades (every 4 hours)" off)
+            4 "Automatic upgrades (every 4 hours)" off
+            5 "Hama MCE Remote" on)
             
     choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 
@@ -883,6 +896,9 @@ function selectAdditionalPackages()
                 ;;
             4)
                 installAutomaticDistUpgrade
+                ;;
+            5)
+                installHamaMCERemote
                 ;;
         esac
     done
